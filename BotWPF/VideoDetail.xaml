@@ -24,7 +24,7 @@
         </ComboBox>
         <Button x:Name="btnAddCat" Content="Přidat kategorii" HorizontalAlignment="Left" Margin="278,520,0,0" VerticalAlignment="Top" Width="149" Height="27" Click="btnAddCat_Click"/>
         <Button x:Name="btnRename" Content="Přejmenovat" HorizontalAlignment="Left" Margin="278,555,0,0" VerticalAlignment="Top" Width="110" Click="btnRename_Click" Height="28"/>
-        <TextBox x:Name="txtBoxName" HorizontalAlignment="Left" Height="31" Margin="94,166,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="375" Foreground="White" Background="Black" FontSize="16"/>
+        <TextBox x:Name="txtBoxName" HorizontalAlignment="Left" Height="31" Margin="94,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" Foreground="White" Background="Black" FontSize="16"/>
         <Label Content="Název" HorizontalAlignment="Left" Margin="92,135,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.176,0.378" Height="34" Width="63" FontWeight="Bold" Foreground="White"/>
         <Label Content="Kategorie" HorizontalAlignment="Left" Margin="92,348,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.176,0.378" Height="34" Width="90" FontWeight="Bold" Foreground="White"/>
         <RichTextBox x:Name="txtBoxDesc" HorizontalAlignment="Left" Height="100" Margin="94,243,0,0" VerticalAlignment="Top" Width="375" Background="Black" Foreground="White" FontSize="16">
@@ -35,7 +35,7 @@
             </FlowDocument>
         </RichTextBox>
         <Label Content="Popis" HorizontalAlignment="Left" Margin="92,209,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.176,0.378" Height="34" Width="90" FontWeight="Bold" Foreground="White"/>
-        <Button x:Name="btnAddVideo" Content="Button" HorizontalAlignment="Left" Margin="220,622,0,0" VerticalAlignment="Top" Width="75" Click="btnAddVideo_Click"/>
+        <Button x:Name="btnAddVideo" Content="Uložit" HorizontalAlignment="Left" Margin="916,517,0,0" VerticalAlignment="Top" Width="97" Click="btnAddVideo_Click" Height="43"/>
         <ComboBox x:Name="cmBoxRename" HorizontalAlignment="Left" Margin="93,555,0,0" VerticalAlignment="Top" Width="177" Height="28" IsEditable="True" PreviewTextInput="cmBoxRename_PreviewTextInput"/>
         <WebBrowser x:Name="webBrowser" HorizontalAlignment="Left" Height="346" Margin="506,166,0,0" VerticalAlignment="Top" Width="507"/>
 

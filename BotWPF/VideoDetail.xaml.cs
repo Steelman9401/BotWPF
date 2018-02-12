@@ -49,11 +49,14 @@ namespace BotWPF
         {
             HtmlWeb web = new HtmlWeb();
             HtmlDocument document = web.Load("https://www.redtube.com/" + video.Url);
-            var category = document.DocumentNode.SelectNodes("//div").Where(x => x.InnerHtml == "Categories").First();
-            var tagList = category.NextSibling.NextSibling.ChildNodes.Where(x => x.Name == "a");
-            foreach (HtmlNode item in tagList)
+            var category = document.DocumentNode.SelectNodes("//div").Where(x => x.InnerHtml == "Categories").FirstOrDefault();
+            if (category != null)
             {
-                lstBoxCat.Items.Add(item.InnerText);
+                var tagList = category.NextSibling.NextSibling.ChildNodes.Where(x => x.Name == "a");
+                foreach (HtmlNode item in tagList)
+                {
+                    lstBoxCat.Items.Add(item.InnerText);
+                }
             }
         }
 
@@ -71,7 +74,7 @@ namespace BotWPF
 
         private void btnAddCat_Click(object sender, RoutedEventArgs e)
         {
-
+            lstBoxCat.Items.Add(cmBoxCategories.Text);
         }
 
         private void btnAddVideo_Click(object sender, RoutedEventArgs e)

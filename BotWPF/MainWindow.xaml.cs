@@ -42,7 +42,7 @@ namespace BotWPF
             {
                 var children = item.ChildNodes;
                 var title = children[3].InnerText.Replace("  ", "").Substring(1);
-                var img = children[1].ChildNodes[1].GetAttributeValue("src", string.Empty);
+                var img = children[1].ChildNodes[1].GetAttributeValue("data-thumb_url", string.Empty);
                 Video video = new Video();
                 video.Url = item.GetAttributeValue("href", string.Empty).Substring(1);
                 video.Title = title;
