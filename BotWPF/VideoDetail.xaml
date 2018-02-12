@@ -35,7 +35,7 @@
             </FlowDocument>
         </RichTextBox>
         <Label Content="Popis" HorizontalAlignment="Left" Margin="92,209,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.176,0.378" Height="34" Width="90" FontWeight="Bold" Foreground="White"/>
-        <Button x:Name="btnAddVideo" Content="Button" HorizontalAlignment="Left" Margin="233,616,0,0" VerticalAlignment="Top" Width="75" Click="btnAddVideo_Click"/>
+        <Button x:Name="btnAddVideo" Content="Button" HorizontalAlignment="Left" Margin="220,622,0,0" VerticalAlignment="Top" Width="75" Click="btnAddVideo_Click"/>
         <ComboBox x:Name="cmBoxRename" HorizontalAlignment="Left" Margin="93,555,0,0" VerticalAlignment="Top" Width="177" Height="28" IsEditable="True" PreviewTextInput="cmBoxRename_PreviewTextInput"/>
         <WebBrowser x:Name="webBrowser" HorizontalAlignment="Left" Height="346" Margin="506,166,0,0" VerticalAlignment="Top" Width="507"/>
 
