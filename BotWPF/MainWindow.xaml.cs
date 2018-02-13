@@ -1,7 +1,9 @@
 ﻿using BotWPF.Data;
+using BotWPF.Repositories;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,16 +24,30 @@ namespace BotWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Video> VideoList { get; set; } = new List<Video>();
+        public List<VideoDTO> VideoList { get; set; } = new List<VideoDTO>();
+        public IEnumerable<string> Urls { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            PornRepository rep = new PornRepository();
+            Urls = rep.GetTitles();
             FillList();
+            dataGridPorn.ItemsSource = VideoList;
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-
+            VideoDTO video = (VideoDTO)dataGridPorn.SelectedItem;
+            if (video != null)
+            {
+                VideoDetail w = new VideoDetail(video);
+                if (w.ShowDialog() == true)
+                {
+                    VideoList.Remove(video);
+                    dataGridPorn.ItemsSource = null;
+                    dataGridPorn.ItemsSource = VideoList;
+                }
+            }
         }
         public void FillList()
         {
@@ -42,21 +58,28 @@ namespace BotWPF
             {
                 var children = item.ChildNodes;
                 var title = children[3].InnerText.Replace("  ", "").Substring(1);
-                var img = children[1].ChildNodes[1].GetAttributeValue("data-thumb_url", string.Empty);
-                Video video = new Video();
-                video.Url = item.GetAttributeValue("href", string.Empty).Substring(1);
-                video.Title = title;
-                video.Img = img;
-                VideoList.Add(video);
-                lstBoxPorn.Items.Add(title);
+                var url = item.GetAttributeValue("href", string.Empty).Substring(1);
+                if (!IfExists(url))
+                {
+                    var img = children[1].ChildNodes[1].GetAttributeValue("data-thumb_url", string.Empty);
+                    VideoDTO video = new VideoDTO();
+                    video.Url = url;
+                    video.Title = title;
+                    video.Img = img;
+                    VideoList.Add(video);
+                }
             }
         }
 
-        private void lstBoxPorn_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private bool IfExists(string Url)
         {
-            Video video = VideoList.Where(x => x.Title == lstBoxPorn.SelectedItem.ToString()).First();
-            VideoDetail w = new VideoDetail(video);
-            w.Show();
+            int count = Urls.Where(x => x == Url).Count();
+            if (count != 0)
+                return true;
+            else
+                return false;
         }
+
+       
     }
 }

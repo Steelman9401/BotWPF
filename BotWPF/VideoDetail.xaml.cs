@@ -22,13 +22,13 @@ namespace BotWPF
     /// </summary>
     public partial class VideoDetail : Window
     {
-        public Video video { get; set; }
+        public VideoDTO Video { get; set; }
         public int Index { get; set; }
         public List<CategoryDTO> Categories { get; set; }
-        public VideoDetail(Video video)
+        public VideoDetail(VideoDTO video)
         {
             InitializeComponent();
-            this.video = video;
+            this.Video = video;
             txtBlockTitle.Text = video.Title;
             txtBlockTitle.TextAlignment = TextAlignment.Center;
             txtBoxDesc.Document.Blocks.Clear();
@@ -48,7 +48,7 @@ namespace BotWPF
         private void GetTags()
         {
             HtmlWeb web = new HtmlWeb();
-            HtmlDocument document = web.Load("https://www.redtube.com/" + video.Url);
+            HtmlDocument document = web.Load("https://www.redtube.com/" + Video.Url);
             var category = document.DocumentNode.SelectNodes("//div").Where(x => x.InnerHtml == "Categories").FirstOrDefault();
             if (category != null)
             {
@@ -63,7 +63,7 @@ namespace BotWPF
         private void cmBoxCategories_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             cmBoxCategories.IsDropDownOpen = true;
-            //cmBoxCategories.ItemsSource = list.Select(p=> p.Title).Where(p => p.Contains(e.Text)).ToList();
+            cmBoxCategories.ItemsSource = Categories.Select(p => p.Name).Where(p => p.Contains(e.Text)).ToList();
         }
 
         private void btnRename_Click(object sender, RoutedEventArgs e)
@@ -79,8 +79,11 @@ namespace BotWPF
 
         private void btnAddVideo_Click(object sender, RoutedEventArgs e)
         {
-            video.Desc = new TextRange(txtBoxDesc.Document.ContentStart, txtBoxDesc.Document.ContentEnd).Text;
+            Video video = new Video();
+            video.Description = new TextRange(txtBoxDesc.Document.ContentStart, txtBoxDesc.Document.ContentEnd).Text;
             video.Title = txtBoxName.Text;
+            video.Url = Video.Url;
+            video.Img = Video.Img;
             PornRepository rep = new PornRepository();
             List<Category> listCat = new List<Category>();
             foreach (string item in lstBoxCat.Items)
@@ -90,6 +93,8 @@ namespace BotWPF
                 listCat.Add(cat);
             }
             rep.AddPorn(video, listCat);
+            this.DialogResult = true;
+            this.Close();
         }
 
         private void LoadCategories()

@@ -65,6 +65,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\CategoryDTO.cs" />
+    <Compile Include="Data\PornDataModel.cs" />
+    <Compile Include="Data\VideoDTO.cs" />
     <Compile Include="Migrations\201802112159513_changes.cs" />
     <Compile Include="Migrations\201802112159513_changes.Designer.cs">
       <DependentUpon>201802112159513_changes.cs</DependentUpon>
@@ -76,6 +78,10 @@
     <Compile Include="Migrations\201802112357322_back.cs" />
     <Compile Include="Migrations\201802112357322_back.Designer.cs">
       <DependentUpon>201802112357322_back.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131921308_changeDesc.cs" />
+    <Compile Include="Migrations\201802131921308_changeDesc.Designer.cs">
+      <DependentUpon>201802131921308_changeDesc.cs</DependentUpon>
     </Compile>
     <Compile Include="Repositories\PornRepository.cs" />
     <Compile Include="VideoDetail.xaml.cs">
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802112357322_back.resx">
       <DependentUpon>201802112357322_back.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131921308_changeDesc.resx">
+      <DependentUpon>201802131921308_changeDesc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
