@@ -84,6 +84,7 @@ namespace BotWPF
             video.Title = txtBoxName.Text;
             video.Url = Video.Url;
             video.Img = Video.Img;
+            video.Date = DateTime.Now;
             PornRepository rep = new PornRepository();
             List<Category> listCat = new List<Category>();
             foreach (string item in lstBoxCat.Items)

@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:BotWPF"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="BotWPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="383.143" Width="554.714">
-    <Grid Margin="0,0,-5.571,3.143">
-        <Button x:Name="btnRefresh" Content="Zobrazit" HorizontalAlignment="Left" Margin="231,295,0,0" VerticalAlignment="Top" Width="88" Click="btnRefresh_Click" Height="35"/>
-        <DataGrid x:Name="dataGridPorn" HorizontalAlignment="Left" Height="254" Margin="10,24,0,0" VerticalAlignment="Top" Width="518"/>
+        Title="MainWindow" Height="410.715" Width="812.428">
+    <Grid Margin="0,0,-5.143,-6.143">
+        <Button x:Name="btnRefresh" Content="Zobrazit" HorizontalAlignment="Left" Margin="9,333,0,0" VerticalAlignment="Top" Width="88" Click="btnRefresh_Click" Height="35"/>
+        <DataGrid x:Name="dataGridPorn" HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="802" FontSize="18" CanUserResizeRows="False" IsReadOnly="True"/>
+        <Button x:Name="btnReload" Content="Refresh" HorizontalAlignment="Left" Margin="122,333,0,0" VerticalAlignment="Top" Width="75" Height="35"/>
 
     </Grid>
 </Window>

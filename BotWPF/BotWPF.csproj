@@ -83,6 +83,10 @@
     <Compile Include="Migrations\201802131921308_changeDesc.Designer.cs">
       <DependentUpon>201802131921308_changeDesc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802131958058_addedDateViews.cs" />
+    <Compile Include="Migrations\201802131958058_addedDateViews.Designer.cs">
+      <DependentUpon>201802131958058_addedDateViews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\PornRepository.cs" />
     <Compile Include="VideoDetail.xaml.cs">
       <DependentUpon>VideoDetail.xaml</DependentUpon>
@@ -140,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802131921308_changeDesc.resx">
       <DependentUpon>201802131921308_changeDesc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131958058_addedDateViews.resx">
+      <DependentUpon>201802131958058_addedDateViews.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
