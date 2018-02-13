@@ -38,22 +38,22 @@ namespace BotWPF
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             VideoDTO video = (VideoDTO)dataGridPorn.SelectedItem;
-            if (video != null)
+            if(video!=null)
             {
-                VideoDetail w = new VideoDetail(video);
-                if (w.ShowDialog() == true)
-                {
-                    VideoList.Remove(video);
-                    dataGridPorn.ItemsSource = null;
-                    dataGridPorn.ItemsSource = VideoList;
-                }
+            VideoDetail w = new VideoDetail(video);
+            if (w.ShowDialog() == true)
+            {
+                VideoList.Remove(video);
+                dataGridPorn.ItemsSource = null;
+                dataGridPorn.ItemsSource = VideoList;
+            }
             }
         }
         public void FillList()
         {
             HtmlWeb web = new HtmlWeb();
             HtmlDocument document = web.Load("https://www.redtube.com/");
-            var nodes = document.DocumentNode.SelectNodes("//a").Skip(47).Take(32).ToArray();
+            var nodes = document.DocumentNode.SelectNodes("//a").Skip(48).Take(32).ToArray();
             foreach (HtmlNode item in nodes)
             {
                 var children = item.ChildNodes;
