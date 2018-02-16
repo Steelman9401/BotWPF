@@ -28,13 +28,13 @@ namespace BotWPF
         public VideoDetail(VideoDTO video)
         {
             InitializeComponent();
+            Task.Run(() => this.LoadCategories());
             this.Video = video;
+            Task.Run(() => this.GetTags());
+            Task.Run(() => this.LoadVideo());
             txtBlockTitle.Text = video.Title;
             txtBlockTitle.TextAlignment = TextAlignment.Center;
             txtBoxDesc.Document.Blocks.Clear();
-            webBrowser.Navigate("https://embed.redtube.com/?id=" + video.Url);
-            LoadCategories();
-            GetTags();
         }
 
         private void lstBoxCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -45,9 +45,17 @@ namespace BotWPF
                 Index = lstBoxCat.SelectedIndex;
             }
         }
-        private void GetTags()
+
+        private async void LoadVideo()
+        {
+            this.Dispatcher.Invoke(() => {
+                webBrowser.Navigate("https://embed.redtube.com/?id=" + Video.Url);
+            });
+        }
+        private async void GetTags()
         {
             HtmlWeb web = new HtmlWeb();
+            List<string> testing = new List<string>();
             HtmlDocument document = web.Load("https://www.redtube.com/" + Video.Url);
             var category = document.DocumentNode.SelectNodes("//div").Where(x => x.InnerHtml == "Categories").FirstOrDefault();
             if (category != null)
@@ -55,9 +63,12 @@ namespace BotWPF
                 var tagList = category.NextSibling.NextSibling.ChildNodes.Where(x => x.Name == "a");
                 foreach (HtmlNode item in tagList)
                 {
-                    lstBoxCat.Items.Add(item.InnerText);
+                    this.Dispatcher.Invoke(() => {
+                        lstBoxCat.Items.Add(item.InnerText);
+                    });
                 }
             }
+           
         }
 
         private void cmBoxCategories_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -98,10 +109,10 @@ namespace BotWPF
             this.Close();
         }
 
-        private void LoadCategories()
+        private async void LoadCategories()
         {
             PornRepository rep = new PornRepository();
-            Categories = rep.GetCategories();
+            Categories = await rep.GetCategories();
         }
 
         private void cmBoxRename_PreviewTextInput(object sender, TextCompositionEventArgs e)

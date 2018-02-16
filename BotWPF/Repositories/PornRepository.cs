@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.Entity;
 namespace BotWPF.Repositories
 {
     public class PornRepository
@@ -41,16 +41,16 @@ namespace BotWPF.Repositories
             }
         }
 
-        public List<CategoryDTO> GetCategories()
+        public async Task<List<CategoryDTO>> GetCategories()
         {
             using (var db = new myDb())
             {
-                return db.Categories
+                return await db.Categories
                      .Select(a => new CategoryDTO()
                      {
                          Id = a.Id,
                          Name = a.Name
-                     }).ToList();
+                     }).ToListAsync();
             }
         }
     }
