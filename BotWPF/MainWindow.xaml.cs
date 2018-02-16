@@ -46,6 +46,7 @@ namespace BotWPF
                 VideoList.Remove(video);
                 dataGridPorn.ItemsSource = null;
                 dataGridPorn.ItemsSource = VideoList;
+                w.Close();
             }
             }
         }

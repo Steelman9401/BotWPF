@@ -48,14 +48,14 @@ namespace BotWPF
 
         private async void LoadVideo()
         {
-            this.Dispatcher.Invoke(() => {
+            this.Dispatcher.Invoke(() =>
+            {
                 webBrowser.Navigate("https://embed.redtube.com/?id=" + Video.Url);
             });
         }
         private async void GetTags()
         {
             HtmlWeb web = new HtmlWeb();
-            List<string> testing = new List<string>();
             HtmlDocument document = web.Load("https://www.redtube.com/" + Video.Url);
             var category = document.DocumentNode.SelectNodes("//div").Where(x => x.InnerHtml == "Categories").FirstOrDefault();
             if (category != null)
@@ -105,6 +105,7 @@ namespace BotWPF
                 listCat.Add(cat);
             }
             rep.AddPorn(video, listCat);
+            webBrowser.Dispose();
             this.DialogResult = true;
             this.Close();
         }
@@ -119,6 +120,11 @@ namespace BotWPF
         {
             cmBoxRename.IsDropDownOpen = true;
             cmBoxRename.ItemsSource = Categories.Select(p=> p.Name).Where(p => p.Contains(e.Text)).ToList();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            webBrowser.Dispose();
         }
     }
 }
