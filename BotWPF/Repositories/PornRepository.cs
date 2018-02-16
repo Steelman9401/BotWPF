@@ -32,13 +32,12 @@ namespace BotWPF.Repositories
 
             }
         }
-        public IEnumerable<string> GetTitles()
+        public IEnumerable<string> GetUrls()
         {
             using (var db = new myDb())
             {
                 return db.Videos.OrderByDescending(p=>p.Id)
-                    .Select(x => x.Url).Take(100).ToList();
-                    
+                    .Select(x => x.Url).Take(100).ToList();                   
             }
         }
 

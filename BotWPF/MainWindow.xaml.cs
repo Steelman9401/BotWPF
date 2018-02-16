@@ -30,7 +30,7 @@ namespace BotWPF
         {
             InitializeComponent();
             PornRepository rep = new PornRepository();
-            Urls = rep.GetTitles();
+            Urls = rep.GetUrls();
             FillList();
             dataGridPorn.ItemsSource = VideoList;
         }
@@ -53,19 +53,19 @@ namespace BotWPF
         {
             HtmlWeb web = new HtmlWeb();
             HtmlDocument document = web.Load("https://www.redtube.com/");
-            var nodes = document.DocumentNode.SelectNodes("//a").Skip(48).Take(32).ToArray();
-            foreach (HtmlNode item in nodes)
+            IEnumerable<HtmlNode> liCountry = document.DocumentNode.SelectNodes("//ul[@id='block_hottest_videos_by_country']").First().ChildNodes.ToList();
+            IEnumerable<HtmlNode> liRecent = document.DocumentNode.SelectNodes("//ul[@id='most_recent_videos']").First().ChildNodes.ToList();
+            IEnumerable<HtmlNode> liComb = liCountry.Concat(liRecent).Where(x=>x.Name=="li");
+            foreach (HtmlNode item in liComb)
             {
-                var children = item.ChildNodes;
-                var title = children[3].InnerText.Replace("  ", "").Substring(1);
-                var url = item.GetAttributeValue("href", string.Empty).Substring(1);
-                if (!IfExists(url))
+                var a = item.ChildNodes[1].ChildNodes[3];
+                var Url = a.GetAttributeValue("href", string.Empty).Substring(1);
+                if (!IfExists("https://embed.redtube.com/?id=" + Url))
                 {
-                    var img = children[1].ChildNodes[1].GetAttributeValue("data-thumb_url", string.Empty);
                     VideoDTO video = new VideoDTO();
-                    video.Url = url;
-                    video.Title = title;
-                    video.Img = img;
+                    video.Url = Url;
+                    video.Title = a.ChildNodes[3].InnerHtml.Replace("  ", "").Substring(1);
+                    video.Img = a.ChildNodes[1].ChildNodes[1].GetAttributeValue("data-thumb_url", string.Empty);
                     VideoList.Add(video);
                 }
             }

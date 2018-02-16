@@ -82,7 +82,7 @@ namespace BotWPF
             Video video = new Video();
             video.Description = new TextRange(txtBoxDesc.Document.ContentStart, txtBoxDesc.Document.ContentEnd).Text;
             video.Title = txtBoxName.Text;
-            video.Url = Video.Url;
+            video.Url = "https://embed.redtube.com/?id=" + Video.Url;
             video.Img = Video.Img;
             video.Date = DateTime.Now;
             PornRepository rep = new PornRepository();
