@@ -87,6 +87,14 @@
     <Compile Include="Migrations\201802131958058_addedDateViews.Designer.cs">
       <DependentUpon>201802131958058_addedDateViews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802162200246_addedVideoPreview.cs" />
+    <Compile Include="Migrations\201802162200246_addedVideoPreview.Designer.cs">
+      <DependentUpon>201802162200246_addedVideoPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802162207448_debugFail.cs" />
+    <Compile Include="Migrations\201802162207448_debugFail.Designer.cs">
+      <DependentUpon>201802162207448_debugFail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\PornRepository.cs" />
     <Compile Include="VideoDetail.xaml.cs">
       <DependentUpon>VideoDetail.xaml</DependentUpon>
@@ -147,6 +155,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802131958058_addedDateViews.resx">
       <DependentUpon>201802131958058_addedDateViews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802162200246_addedVideoPreview.resx">
+      <DependentUpon>201802162200246_addedVideoPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802162207448_debugFail.resx">
+      <DependentUpon>201802162207448_debugFail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

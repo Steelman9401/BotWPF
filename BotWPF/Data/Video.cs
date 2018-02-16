@@ -17,6 +17,7 @@ namespace BotWPF.Data
         public DateTime Date { get; set; }
         public int Views { get; set; } = 0;
         public string Img { get; set; }
+        public string Preview { get; set; }
         public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
     }
 }

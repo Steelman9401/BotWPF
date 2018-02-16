@@ -46,7 +46,6 @@ namespace BotWPF
                 VideoList.Remove(video);
                 dataGridPorn.ItemsSource = null;
                 dataGridPorn.ItemsSource = VideoList;
-                w.Close();
             }
             }
         }
@@ -60,14 +59,18 @@ namespace BotWPF
             foreach (HtmlNode item in liComb)
             {
                 var a = item.ChildNodes[1].ChildNodes[3];
-                var Url = a.GetAttributeValue("href", string.Empty).Substring(1);
-                if (!IfExists("https://embed.redtube.com/?id=" + Url))
+                if (a.Name == "a")
                 {
-                    VideoDTO video = new VideoDTO();
-                    video.Url = Url;
-                    video.Title = a.ChildNodes[3].InnerHtml.Replace("  ", "").Substring(1);
-                    video.Img = a.ChildNodes[1].ChildNodes[1].GetAttributeValue("data-thumb_url", string.Empty);
-                    VideoList.Add(video);
+                    var Url = a.GetAttributeValue("href", string.Empty).Substring(1);
+                    if (!IfExists("https://embed.redtube.com/?id=" + Url))
+                    {
+                        VideoDTO video = new VideoDTO();
+                        video.Url = Url;
+                        video.Title = a.ChildNodes[3].InnerHtml.Replace("  ", "").Substring(1);
+                        video.Img = a.ChildNodes[1].ChildNodes[1].GetAttributeValue("data-thumb_url", string.Empty);
+                        video.Preview = a.ChildNodes[1].ChildNodes[1].GetAttributeValue("data-mediabook", string.Empty);
+                        VideoList.Add(video);
+                    }
                 }
             }
         }
